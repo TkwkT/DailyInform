@@ -21,4 +21,5 @@ data class ClassifyBean(
 ){
     //所属大类
     var type:String = ""
+    var isSelect = false
 }

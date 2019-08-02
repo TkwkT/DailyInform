@@ -14,9 +14,9 @@ class MyApplication :Application(){
 //        }
 //        LeakCanary.install(this)
         RxJavaPlugins.setErrorHandler {
-            Log.d("aaa",it.message)
+            val message = it.message?:""
+            Log.d("aaa",message)
         }
-
         context = applicationContext
     }
 

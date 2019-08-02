@@ -5,6 +5,4 @@ import com.example.dailyinform.bean.DetailBean
 
 class ItemDetailViewModel(detailBean: DetailBean) {
     val title = ObservableField(detailBean.title)
-
-
 }

@@ -1,6 +1,7 @@
 package com.example.dailyinform
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -41,6 +42,23 @@ class InformationFragment : Fragment() {
         }
         viewPager.adapter = PagerAdapter(classifyFragmentList, fragmentManager!!)
         viewPager.currentItem = 0
+    }
+
+    private fun setViewPager() {
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {}
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+
+            }
+
+        })
+
+
     }
 
     private fun initTableLayout() {

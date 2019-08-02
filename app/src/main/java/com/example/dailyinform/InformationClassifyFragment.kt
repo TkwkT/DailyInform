@@ -43,7 +43,7 @@ class InformationClassifyFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, factory).get(InformationClassifyViewModel::class.java)
         viewModel.getData(type)
         recyclerView = binding.classifyRecycler
-        adapter = InformationClassifyAdapter(requireContext()){position ->
+        adapter = InformationClassifyAdapter{position ->
             setCurrentPosition(position)
         }
         recyclerView.adapter = adapter
@@ -63,12 +63,24 @@ class InformationClassifyFragment : Fragment() {
         }
         viewPager.adapter = PagerAdapter(detailFragmentList,childFragmentManager)
         viewPager.currentItem = 0
+        setViewPagerListener()
     }
 
     private fun setCurrentPosition(position:Int){
         viewPager.currentItem = position
-
     }
+
+    private fun setViewPagerListener(){
+        viewPager.addOnPageChangeListener(object :ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {}
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+
+            override fun onPageSelected(position: Int) {
+                adapter.setCurrentPosition(position)
+            }
+        })
+    }
+
 
     companion object {
         fun newInstance(type: String): InformationClassifyFragment {

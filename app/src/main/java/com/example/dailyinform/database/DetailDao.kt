@@ -1,5 +1,6 @@
 package com.example.dailyinform.database
 
+import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -11,7 +12,7 @@ import io.reactivex.Single
 interface DetailDao{
 
     @Query("SELECT * FROM detail WHERE classify_type = :classify")
-    fun getDetailData(classify:String):Single<List<DetailBean>>
+    fun getDetailData(classify:String):DataSource.Factory<Int,DetailBean>
 
     @Insert
     fun insertDetail(detailBean: DetailBean)

@@ -14,7 +14,5 @@ fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
 //            .transition(DrawableTransitionOptions.withCrossFade())
             .into(view)
 
-//        val imageLoader = ImageLoaderBuilder.getBuilder().build()
-//        imageLoader.with(view.context).load(imageUrl,view)
     }
 }

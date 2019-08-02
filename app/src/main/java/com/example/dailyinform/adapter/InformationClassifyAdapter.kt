@@ -1,7 +1,5 @@
 package com.example.dailyinform.adapter
 
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -12,17 +10,19 @@ import com.example.dailyinform.databinding.ItemClassifyBinding
 import com.example.dailyinform.holder.BaseHolder
 import com.example.dailyinform.holder.ClassifyHolder
 import com.example.dailyinform.holder.ClassifySource
-import com.example.dailyinform.myview.MyTextView
 
-class InformationClassifyAdapter(private val context: Context,private val callback:(position:Int)->Unit) : RecyclerView.Adapter<BaseHolder>() {
-    private val datas = ArrayList<ClassifyBean>()
-    private var view:MyTextView? = null
-    private var position:Int = 0
+class InformationClassifyAdapter(private val callback: (position: Int) -> Unit) : RecyclerView.Adapter<BaseHolder>() {
+    private var currentPosition = 0
+    private val classifyList = ArrayList<ClassifyBean>()
 
     fun freshClassifyList(list: List<ClassifyBean>) {
-        datas.clear()
-        datas.addAll(list)
+        classifyList.addAll(list)
+        list[0].isSelect = true
         notifyDataSetChanged()
+    }
+
+    fun setCurrentPosition(position:Int){
+        setItemChange(position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder {
@@ -37,40 +37,28 @@ class InformationClassifyAdapter(private val context: Context,private val callba
         if (holder is ClassifyHolder) {
             holder.bind(ClassifySource(getItem(position)))
             holder.getView().setOnClickListener {
-                setColorChange(it as MyTextView,position)
+                setItemChange(position)
                 callback(position)
-
             }
         }
     }
 
-    private fun setColorChange(it:MyTextView,p: Int){
-        when {
-            view == null -> {
-                it.isSelect = true
-                view = it
-                position = p
-                notifyItemChanged(p)
-            }
-            view != it -> {
-                view!!.isSelect = false
-                notifyItemChanged(position)
-                it.isSelect = true
-                notifyItemChanged(p)
-                view = it
-                position = p
-            }
-            else -> {
-
-            }
+    private fun setItemChange(position: Int){
+        if (position != currentPosition){
+            classifyList[currentPosition].isSelect = false
+            notifyItemChanged(currentPosition,1)
+            classifyList[position].isSelect = true
+            notifyItemChanged(position,1)
+            currentPosition = position
         }
     }
 
     private fun getItem(position: Int): ClassifyBean {
-        return datas[position]
+        return classifyList[position]
     }
 
     override fun getItemCount(): Int {
-        return datas.size
+        return classifyList.size
     }
+
 }

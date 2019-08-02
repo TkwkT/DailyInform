@@ -9,11 +9,12 @@ import com.example.dailyinform.repository.ClassifyRepository
 class InformationClassifyViewModel internal constructor(private val repository: ClassifyRepository) : ViewModel() {
 
     val classifyList = MutableLiveData<List<ClassifyBean>>()
+    private val arrayList = ArrayList<ClassifyBean>()
 
     fun getData(type: String) {
         repository.getClassify(type) {
-            classifyList.value = it
-            Log.d("aaa",it.toString())
+            arrayList.addAll(it)
+            classifyList.value = arrayList
         }
     }
 
