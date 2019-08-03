@@ -44,7 +44,7 @@ class CollectFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        adapter = CollectAdapter { url: String, title: String, cover: String ->
+        adapter = CollectAdapter { url: String, title: String, cover: String? ->
             changeActivity(url,title,cover)
         }
         recyclerView.adapter = adapter
@@ -63,7 +63,7 @@ class CollectFragment : Fragment() {
             }
         })
     }
-    private fun changeActivity(url: String, title: String,cover:String) {
+    private fun changeActivity(url: String, title: String,cover:String?) {
         val intent = Intent(requireContext(), DetailActivity::class.java)
         intent.putExtra("detail_url", url)
         intent.putExtra("detail_title", title)

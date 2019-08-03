@@ -14,7 +14,7 @@ import com.example.dailyinform.holder.BaseHolder
 import com.example.dailyinform.holder.CollectHolder
 import com.example.dailyinform.holder.CollectSource
 
-class CollectAdapter(private val callback: (url:String,title:String,cover:String) -> Unit) : RecyclerView.Adapter<BaseHolder>() {
+class CollectAdapter(private val callback: (url:String,title:String,cover:String?) -> Unit) : RecyclerView.Adapter<BaseHolder>() {
     private val mAsync = AsyncListDiffer(this, diffCallback)
 
     fun submitData(list: List<CollectionDetailBean>) {

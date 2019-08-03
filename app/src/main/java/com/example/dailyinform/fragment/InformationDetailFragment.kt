@@ -50,7 +50,7 @@ class InformationDetailFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        adapter = InformationDetailPagingAdapter { url: String, title: String,cover:String ->
+        adapter = InformationDetailPagingAdapter { url: String, title: String,cover:String? ->
             changeActivity(url, title,cover)
         }
         viewModel.getData(classify) {
@@ -62,7 +62,7 @@ class InformationDetailFragment : Fragment() {
         }
     }
 
-    private fun changeActivity(url: String, title: String,cover:String) {
+    private fun changeActivity(url: String, title: String,cover:String?) {
         val intent = Intent(requireContext(), DetailActivity::class.java)
         intent.putExtra("detail_url", url)
         intent.putExtra("detail_title", title)

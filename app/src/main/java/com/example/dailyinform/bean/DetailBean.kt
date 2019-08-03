@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
 data class DetailBean(
     //图片
     @SerializedName("cover")
-    var cover: String,
+    var cover: String?,
 
     //http数据
     @SerializedName("raw")

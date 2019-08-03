@@ -29,8 +29,8 @@ class DetailActivity : BaseActivity() {
         canSlideFinish(true)
         val binding = DataBindingUtil.setContentView<ActivityDetailBinding>(this, R.layout.activity_detail)
 
-        if (!url.isNullOrEmpty() && !title.isNullOrEmpty() && !cover.isNullOrEmpty()) {
-            collectionDetailBean = CollectionDetailBean(cover!!,title!!,url!!)
+        if (!url.isNullOrEmpty() && !title.isNullOrEmpty()) {
+            collectionDetailBean = CollectionDetailBean(cover,title!!,url!!)
             init(binding)
         }
     }
