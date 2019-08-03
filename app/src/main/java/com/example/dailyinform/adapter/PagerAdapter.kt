@@ -1,4 +1,4 @@
-package com.example.dailyinform.viewpager
+package com.example.dailyinform.adapter
 
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment

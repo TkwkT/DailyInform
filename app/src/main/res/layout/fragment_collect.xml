@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	tools:context=".fragment.InformationDetailFragment">
+	tools:context=".fragment.CollectFragment">
 
+	<data>
+
+		<variable
+			name="viewmodel"
+			type="com.example.dailyinform.viewmodel.CollectionDetailViewModel"/>
+	</data>
 
 	<FrameLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"
+		android:background="#ECECEC">
 
 		<androidx.recyclerview.widget.RecyclerView
-			android:id="@+id/detail_recycler"
+			android:id="@+id/collect_recycler"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:scrollbars="vertical"
@@ -20,9 +26,17 @@
 			android:scrollbarThumbVertical="@color/scrollbar"
 			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 			android:layoutAnimation="@anim/layout_anim_right_in"
-			android:overScrollMode="never"/>
+			android:visibility="gone"/>
+
+		<TextView
+			android:id="@+id/collect_tv"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:visibility= "visible"
+			android:text="还没有数据呢，快去收藏吧"
+			android:textSize="20dp"
+			android:layout_gravity="center"/>
 
 	</FrameLayout>
 
 </layout>
-

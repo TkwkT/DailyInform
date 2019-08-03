@@ -1,4 +1,4 @@
-package com.example.dailyinform
+package com.example.dailyinform.activity
 
 import android.content.Context
 import android.content.IntentFilter
@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.dailyinform.R
 import com.example.dailyinform.listener.NetworkConnectChangeReceiver
 import com.example.dailyinform.myview.SlideFinishLayout
 import com.example.dailyinform.utils.NetworkState
@@ -31,7 +32,12 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         initNetworkLocalReceiver()
         //设置活动切换动画
-        setInOutAnimation(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
+        setInOutAnimation(
+            R.anim.slide_in_right,
+            R.anim.slide_out_left,
+            R.anim.slide_in_left,
+            R.anim.slide_out_right
+        )
     }
 
     override fun onResume() {

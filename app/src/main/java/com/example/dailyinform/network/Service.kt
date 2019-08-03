@@ -13,7 +13,7 @@ interface ClassifyService{
 }
 
 interface DetailService{
-    @GET("xiandu/data/id/{classify}/count/30/page/{page}")
-    fun getDetail(@Path("classify")classify:String,@Path("page")page:Int):Observable<BaseBean<DetailBean>>
+    @GET("xiandu/data/id/{classify}/count/{count}/page/{page}")
+    fun getDetail(@Path("classify")classify:String, @Path("count")count:Int, @Path("page")page:Int):Observable<BaseBean<DetailBean>>
 }
 

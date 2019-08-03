@@ -12,7 +12,7 @@ import com.example.dailyinform.holder.BaseHolder
 import com.example.dailyinform.holder.DetailHolder
 import com.example.dailyinform.holder.DetailSource
 
-class InformationDetailPagingAdapter(private val callback:(url:String,title:String) ->Unit) : PagedListAdapter<DetailBean, BaseHolder>(diffCallback) {
+class InformationDetailPagingAdapter(private val callback:(url:String,title:String,cover:String) ->Unit) : PagedListAdapter<DetailBean, BaseHolder>(diffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder {
         val binding = DataBindingUtil.inflate<ItemDetailBinding>(
             LayoutInflater.from(parent.context),
@@ -26,11 +26,10 @@ class InformationDetailPagingAdapter(private val callback:(url:String,title:Stri
             val detailBean = getItem(position) ?: return
             holder.bind(DetailSource(detailBean))
             holder.getView().setOnClickListener {
-                callback(detailBean.url, detailBean.title)
+                callback(detailBean.url, detailBean.title,detailBean.cover)
             }
         }
     }
-
 
     companion object {
         val diffCallback = object : DiffUtil.ItemCallback<DetailBean>() {

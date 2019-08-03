@@ -1,12 +1,10 @@
 package com.example.dailyinform.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dailyinform.R
-import com.example.dailyinform.bean.ClassifyBean
 import com.example.dailyinform.bean.DetailBean
 import com.example.dailyinform.databinding.ItemDetailBinding
 import com.example.dailyinform.holder.BaseHolder
@@ -26,8 +24,13 @@ class InformationDetailAdapter(private val callback: (url: String, title: String
     fun setPage() {
         ++page
     }
+
     fun freshData(list: List<DetailBean>) {
-        val position = if (datas.size != 0) { datas.size - 1 } else { 0 }
+        val position = if (datas.size != 0) {
+            datas.size - 1
+        } else {
+            0
+        }
         datas.addAll(list)
         notifyItemRangeChanged(position, list.size)
     }

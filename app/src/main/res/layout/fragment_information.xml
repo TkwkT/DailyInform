@@ -4,7 +4,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	tools:context=".InformationFragment">
+	tools:context=".fragment.InformationFragment">
 
 	<data>
 
@@ -28,7 +28,7 @@
 			app:tabBackground="@android:color/transparent"
 			app:tabSelectedTextColor="@color/item_text_select"
 			app:tabTextColor="@color/item_text_unselect"
-			/>
+			android:elevation="3dp"/>
 
 		<androidx.viewpager.widget.ViewPager
 			android:id="@+id/information_viewpager"

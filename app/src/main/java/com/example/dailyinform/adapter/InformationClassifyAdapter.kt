@@ -21,8 +21,18 @@ class InformationClassifyAdapter(private val callback: (position: Int) -> Unit) 
         notifyDataSetChanged()
     }
 
-    fun setCurrentPosition(position:Int){
+    fun setCurrentPosition(position: Int) {
         setItemChange(position)
+    }
+
+    private fun setItemChange(position: Int) {
+        if (position != currentPosition) {
+            classifyList[currentPosition].isSelect = false
+            notifyItemChanged(currentPosition, 1)
+            classifyList[position].isSelect = true
+            notifyItemChanged(position, 1)
+            currentPosition = position
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder {
@@ -43,15 +53,7 @@ class InformationClassifyAdapter(private val callback: (position: Int) -> Unit) 
         }
     }
 
-    private fun setItemChange(position: Int){
-        if (position != currentPosition){
-            classifyList[currentPosition].isSelect = false
-            notifyItemChanged(currentPosition,1)
-            classifyList[position].isSelect = true
-            notifyItemChanged(position,1)
-            currentPosition = position
-        }
-    }
+
 
     private fun getItem(position: Int): ClassifyBean {
         return classifyList[position]

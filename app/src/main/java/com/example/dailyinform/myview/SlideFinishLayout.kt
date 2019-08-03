@@ -7,7 +7,7 @@ import android.util.DisplayMetrics
 import android.view.*
 import android.widget.LinearLayout
 import androidx.viewpager.widget.ViewPager
-import com.example.dailyinform.BaseActivity
+import com.example.dailyinform.activity.BaseActivity
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.abs

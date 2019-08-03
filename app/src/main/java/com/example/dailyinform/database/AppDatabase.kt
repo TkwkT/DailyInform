@@ -5,12 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.dailyinform.bean.ClassifyBean
+import com.example.dailyinform.bean.CollectionDetailBean
 import com.example.dailyinform.bean.DetailBean
 
-@Database(entities = [ClassifyBean::class, DetailBean::class], version = 1, exportSchema = false)
+@Database(entities = [ClassifyBean::class, DetailBean::class,CollectionDetailBean::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun classifyDao():ClassifyDao
     abstract fun detailDao():DetailDao
+    abstract fun collectionDetailDao():CollectionDetailDao
 
     companion object{
         @Volatile private var instance: AppDatabase? = null

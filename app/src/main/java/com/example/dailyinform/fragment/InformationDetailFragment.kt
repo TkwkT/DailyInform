@@ -1,4 +1,4 @@
-package com.example.dailyinform
+package com.example.dailyinform.fragment
 
 
 import android.content.Intent
@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dailyinform.R
+import com.example.dailyinform.activity.DetailActivity
 import com.example.dailyinform.adapter.InformationDetailPagingAdapter
 import com.example.dailyinform.databinding.FragmentInformationDetailBinding
 import com.example.dailyinform.utils.InjectorUtils
@@ -48,23 +50,23 @@ class InformationDetailFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        adapter = InformationDetailPagingAdapter { url: String, title: String ->
-            changeActivity(url, title)
+        adapter = InformationDetailPagingAdapter { url: String, title: String,cover:String ->
+            changeActivity(url, title,cover)
         }
         viewModel.getData(classify) {
             it.observe(this, Observer { list ->
                 if (list != null) {
-                    Log.d("aaa", list.toString())
                     adapter.submitList(list)
                 }
             })
         }
     }
 
-    private fun changeActivity(url: String, title: String) {
+    private fun changeActivity(url: String, title: String,cover:String) {
         val intent = Intent(requireContext(), DetailActivity::class.java)
         intent.putExtra("detail_url", url)
         intent.putExtra("detail_title", title)
+        intent.putExtra("detail_cover",cover)
         startActivity(intent)
     }
 

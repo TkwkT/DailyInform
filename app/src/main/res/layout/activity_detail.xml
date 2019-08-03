@@ -3,13 +3,13 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	tools:context=".DetailActivity">
+	tools:context=".activity.DetailActivity">
 
 	<data>
 
 		<variable
 			name="viewmodel"
-			type="com.example.dailyinform.viewmodel.WebViewDetailViewModel"/>
+			type="com.example.dailyinform.viewmodel.DetailActivityViewModel"/>
 
 		<import type="android.view.View"/>
 	</data>

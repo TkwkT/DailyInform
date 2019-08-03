@@ -8,10 +8,11 @@ import com.example.dailyinform.network.ClassifyService
 import com.example.dailyinform.network.IdeaApi
 import com.example.dailyinform.utils.NetworkState
 import com.example.dailyinform.utils.NetworkUtil
+import com.example.dailyinform.utils.runOnNewThread
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class ClassifyRepository private constructor(private val classifyDao: ClassifyDao) {
+class ClassifyRepository private constructor(private val classifyDao: ClassifyDao) :BaseRepository{
 
     fun getClassify(type: String, callback: (List<ClassifyBean>) -> Unit) {
         val state = NetworkUtil.isNetworkConnected(MyApplication.getContext())
@@ -30,15 +31,29 @@ class ClassifyRepository private constructor(private val classifyDao: ClassifyDa
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext {
-                    callback(it.results)
-                    Log.d("aaa",it.toString())
+                    val list = setType(type, it.results)
+                    callback(list)
+                    if (it != null) {
+                        addToDB(list)
+                    }
                 }
                 .subscribe()
-//            runOnNewThread {
-//                classifyDao.insertClassifyList(classifyList)
-//            }
         }
     }
+
+    private fun setType(type: String, list: List<ClassifyBean>): List<ClassifyBean> {
+        for (c: ClassifyBean in list) {
+            c.type = type
+        }
+        return list
+    }
+
+    private fun addToDB(list: List<ClassifyBean>) {
+        runOnNewThread {
+            classifyDao.insertClassifyList(list)
+        }
+    }
+
 
     companion object {
 
